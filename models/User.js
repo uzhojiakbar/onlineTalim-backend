@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: "user" }, // 'admin' yoki 'user'
 });
 
-// Parolni shifrlash
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);

@@ -2,7 +2,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-// Ro'yxatdan o'tish
 exports.register = async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -16,7 +15,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// Tizimga kirish
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -27,10 +25,16 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Noto'g'ri parol" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-    res.json({ token });
+    console.log(user);
+
+    const token = jwt.sign(
+      { id: user._id, username: user.username, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.json({ token, role: user.role, username: user.username });
   } catch (error) {
     res.status(500).json({ error: "Kirishda xatolik" });
   }
