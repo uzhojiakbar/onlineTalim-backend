@@ -13,7 +13,7 @@
 </ul>
 
 
-#### Login uchun (Foydaluvchini barcha malumotlarini qaytardi)
+#### Login uchun (Foydaluvchini barcha malumotlari va JWT tokenni qaytardi)
 <ul>
   <li> userame - type string, required</li>
   <li> password - type string, required </li>
