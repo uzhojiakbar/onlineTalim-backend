@@ -3,9 +3,23 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, firstname, lastname, group, role } = req.body;
+
+  if (!(username && password && firstname && lastname && group)) {
+    res
+      .status(400)
+      .json({ message: "Kerakli malumotlarni hammasi yuborilmagan!" });
+  }
+
   try {
-    const newUser = new User({ username, password });
+    const newUser = new User({
+      username,
+      password,
+      firstname,
+      lastname,
+      group,
+      role,
+    });
     await newUser.save();
     res
       .status(201)
@@ -25,16 +39,29 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Noto'g'ri parol" });
 
-    console.log(user);
-
     const token = jwt.sign(
-      { id: user._id, username: user.username, role: user.role },
+      {
+        id: user._id,
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        group: user.group,
+        role: user.role,
+      },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",
       }
     );
-    res.json({ token, role: user.role, username: user.username });
+    res.json({
+      token,
+      id: user._id,
+      username: user.username,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      group: user.group,
+      role: user.role,
+    });
   } catch (error) {
     res.status(500).json({ error: "Kirishda xatolik" });
   }
