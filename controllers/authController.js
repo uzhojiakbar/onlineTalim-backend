@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 exports.register = async (req, res) => {
   const { username, password, firstname, lastname, group, role } = req.body;
 
-  if (!username || !password || !firstname || !lastname || !group)) {
+  if (!username || !password || !firstname || !lastname || !group) {
     res
       .status(400)
       .json({ message: "Kerakli malumotlarni hammasi yuborilmagan!" });
