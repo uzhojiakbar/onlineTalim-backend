@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 exports.register = async (req, res) => {
   const { username, password, firstname, lastname, group, role } = req.body;
 
-  if (!(username && password && firstname && lastname && group)) {
+  if (!username || !password || !firstname || !lastname || !group)) {
     res
       .status(400)
       .json({ message: "Kerakli malumotlarni hammasi yuborilmagan!" });
@@ -25,6 +25,7 @@ exports.register = async (req, res) => {
       .status(201)
       .json({ message: "Foydalanuvchi muvaffaqiyatli ro'yxatdan o'tdi" });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: "Ro'yxatdan o'tishda xatolik" });
   }
 };
