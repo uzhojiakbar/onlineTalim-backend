@@ -10,6 +10,8 @@ const {
 // Yangi mavzu qo'shish
 router.get("/:fannomi", topicController.getTopics);
 
+router.get("/:fannomi/:topicname", topicController.getTopic);
+
 router.post("/:fannomi", topicController.addTopic);
 
 // Mavzuni yangilash

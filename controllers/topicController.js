@@ -20,14 +20,15 @@ const getTopics = async (req, res) => {
 // Mavzuni olish (nomi bo'yicha)
 const getTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
-  const topicName = req.params.topicName;
+  const topicname = req.params.topicname;
+
+  console.log(fannomi);
+  console.log(topicname);
 
   try {
-    // Fanni qidirish
     const lesson = await Lesson.findOne({ nomi: fannomi });
     if (lesson) {
-      // Mavzuni `name` bo'yicha qidirish
-      const topic = lesson.topics.find((topic) => topic.name === topicName);
+      const topic = lesson.topics.find((topic) => topic.name === topicname);
       if (topic) {
         res.json(topic);
       } else {
@@ -66,7 +67,7 @@ const addTopic = async (req, res) => {
 // Mavzuni yangilash (nomi bo'yicha)
 const updateTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
-  const topicName = req.params.topicName;
+  const topicname = req.params.topicName;
   const updates = req.body;
 
   try {
