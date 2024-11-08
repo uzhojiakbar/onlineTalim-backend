@@ -12,7 +12,7 @@ router.get("/:fannomi", topicController.getTopics);
 
 router.get("/:fannomi/:topicname", topicController.getTopic);
 
-router.post("/:fannomi", topicController.addTopic);
+router.post("/:fannomi", isTeacherOrAdmin, topicController.addTopic);
 
 // Mavzuni yangilash
 router.put("/:fannomi/:id", topicController.updateTopic);
