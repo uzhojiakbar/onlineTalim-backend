@@ -11,6 +11,9 @@ exports.register = async (req, res) => {
       .json({ message: "Kerakli malumotlarni hammasi yuborilmagan!" });
   }
 
+  const user = await User.findOne({ username });
+  if (user) return res.status(400).json({ error: "Foydalanuvchi mavjud" });
+
   try {
     const newUser = new User({
       username,
