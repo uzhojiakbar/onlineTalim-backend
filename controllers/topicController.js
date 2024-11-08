@@ -1,5 +1,47 @@
 const Lesson = require("../models/Lessons");
 
+const getTopics = async (req, res) => {
+  const fannomi = req.params.fannomi;
+
+  try {
+    // Fanni qidirish
+    const lesson = await Lesson.findOne({ nomi: fannomi });
+    if (lesson) {
+      // Umumiy mavzularni qaytarish
+      res.json(lesson.topics);
+    } else {
+      res.status(404).json({ message: "Fan topilmadi" });
+    }
+  } catch (error) {
+    console.error("Error in getTopics:", error);
+    res.status(500).json({ message: "Mavzularni olishda xatolik" });
+  }
+};
+// Mavzuni olish (nomi bo'yicha)
+const getTopic = async (req, res) => {
+  const fannomi = req.params.fannomi;
+  const topicName = req.params.topicName;
+
+  try {
+    // Fanni qidirish
+    const lesson = await Lesson.findOne({ nomi: fannomi });
+    if (lesson) {
+      // Mavzuni `name` bo'yicha qidirish
+      const topic = lesson.topics.find((topic) => topic.name === topicName);
+      if (topic) {
+        res.json(topic);
+      } else {
+        res.status(404).json({ message: "Mavzu topilmadi" });
+      }
+    } else {
+      res.status(404).json({ message: "Fan topilmadi" });
+    }
+  } catch (error) {
+    console.error("Error in getTopic:", error);
+    res.status(500).json({ message: "Mavzuni olishda xatolik" });
+  }
+};
+
 // Yangi mavzu qo'shish
 const addTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
@@ -15,20 +57,22 @@ const addTopic = async (req, res) => {
       res.status(404).json({ message: "Fan topilmadi" });
     }
   } catch (error) {
+    console.error("Error in addTopic:", error);
+
     res.status(500).json({ message: "Mavzu qo'shishda xatolik" });
   }
 };
 
-// Mavzuni yangilash
+// Mavzuni yangilash (nomi bo'yicha)
 const updateTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
-  const topicId = parseInt(req.params.id, 10);
+  const topicName = req.params.topicName;
   const updates = req.body;
 
   try {
     const lesson = await Lesson.findOne({ nomi: fannomi });
     if (lesson) {
-      const topic = lesson.topics.find((topic) => topic.id === topicId);
+      const topic = lesson.topics.find((topic) => topic.name === topicName);
       if (topic) {
         Object.assign(topic, updates);
         await lesson.save();
@@ -40,25 +84,27 @@ const updateTopic = async (req, res) => {
       res.status(404).json({ message: "Fan topilmadi" });
     }
   } catch (error) {
+    console.error("Error in updateTopic:", error);
     res.status(500).json({ message: "Mavzuni yangilashda xatolik" });
   }
 };
 
-// Mavzuni o'chirish
+// Mavzuni o'chirish (nomi bo'yicha)
 const deleteTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
-  const topicId = parseInt(req.params.id, 10);
+  const topicName = req.params.topicName;
 
   try {
     const lesson = await Lesson.findOne({ nomi: fannomi });
     if (lesson) {
-      lesson.topics = lesson.topics.filter((topic) => topic.id !== topicId);
+      lesson.topics = lesson.topics.filter((topic) => topic.name !== topicName);
       await lesson.save();
       res.json({ message: "Mavzu muvaffaqiyatli o'chirildi" });
     } else {
       res.status(404).json({ message: "Fan topilmadi" });
     }
   } catch (error) {
+    console.error("Error in deleteTopic:", error);
     res.status(500).json({ message: "Mavzuni o'chirishda xatolik" });
   }
 };
@@ -67,4 +113,6 @@ module.exports = {
   addTopic,
   updateTopic,
   deleteTopic,
+  getTopic,
+  getTopics,
 };
