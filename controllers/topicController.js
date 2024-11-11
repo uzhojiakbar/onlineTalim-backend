@@ -47,6 +47,7 @@ const getTopic = async (req, res) => {
 const addTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
   const newTopic = req.body;
+  console.log(newTopic);
 
   try {
     const lesson = await Lesson.findOne({ nomi: fannomi });
