@@ -10,6 +10,7 @@ const getTopics = async (req, res) => {
         return {
           id: topic["_id"],
           nomi: topic.name,
+          fan: fannomi || "Nomalum",
         };
       });
       res.json(resData);
