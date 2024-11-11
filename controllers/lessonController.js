@@ -3,7 +3,7 @@ const Lesson = require("../models/Lessons");
 // Barcha darslarni olish
 const getAllLessons = async (req, res) => {
   try {
-    const lessons = await Lesson.find();
+    const lessons = await Lesson.find().select("-topics");
     res.json(lessons);
   } catch (error) {
     console.error("Error in getAllLessons:", error);
