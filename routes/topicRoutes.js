@@ -8,6 +8,10 @@ const {
 } = require("../middleware/authMiddleware");
 
 // Yangi mavzu qo'shish
+router.get("/", (req, res) => {
+  res.status(404).json({ message: "Fan nomini kiriting!" });
+});
+
 router.get("/:fannomi", topicController.getTopics);
 
 router.get("/:fannomi/:topicname", topicController.getTopic);

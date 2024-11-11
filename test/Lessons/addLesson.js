@@ -6,15 +6,6 @@
 //{
 //   nomi: "Matematika" ,
 //   desc: "Matematika darsi",
-//   teacher: "Olim Aliyev",
-//   views: 10,
-//   topics: [
-//     {
-//       name: "1-dars: Algebra",
-//       desc: "Algebra kirish",
-//       embed: "https:///",
-//     },
-//   ],
 // };
 
 // ? Template
