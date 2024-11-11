@@ -31,11 +31,14 @@ const getLessonByName = async (req, res) => {
 
 // Yangi dars qo'shish
 const addLesson = async (req, res) => {
-  const { nomi, desc, teacher, views, topics } = req.body;
+  const { nomi, desc, views, topics } = req.body;
 
   try {
-    const newLesson = new Lesson({ nomi, desc, teacher, views, topics });
-    await newLesson.save();
+    // const newLesson = new Lesson({ nomi, desc, views, topics });
+    // await newLesson.save();
+    const teacher = `${req.user.firstname} ${req.user.lastname} `;
+    console.log(req.user);
+
     res.status(201).json(newLesson);
   } catch (error) {
     console.error("Error in addLesson:", error);
