@@ -4,8 +4,6 @@
 // [
 //     {
 //       name: '1-dars: Algebra',
-//       desc: 'Algebra kirish',
-//       embed: 'https:///',
 //       _id: '672e02d5773e2cd98d6b4a8d'
 //     }
 //      ...
@@ -13,7 +11,7 @@
 
 // ? Template
 
-const fannomi = "Matematika";
+const fannomi = "Kompyuter tizimlari va tarmoqlari";
 
 fetch(`http://localhost:5000/api/topic/${fannomi}`)
   .then((response) => {

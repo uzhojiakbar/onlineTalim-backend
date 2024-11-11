@@ -4,11 +4,15 @@ const getTopics = async (req, res) => {
   const fannomi = req.params.fannomi;
 
   try {
-    // Fanni qidirish
     const lesson = await Lesson.findOne({ nomi: fannomi });
     if (lesson) {
-      // Umumiy mavzularni qaytarish
-      res.json(lesson.topics);
+      const resData = lesson.topics.map((topic) => {
+        return {
+          id: topic["_id"],
+          nomi: topic.name,
+        };
+      });
+      res.json(resData);
     } else {
       res.status(404).json({ message: "Fan topilmadi" });
     }
@@ -17,6 +21,7 @@ const getTopics = async (req, res) => {
     res.status(500).json({ message: "Mavzularni olishda xatolik" });
   }
 };
+
 // Mavzuni olish (nomi bo'yicha)
 const getTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
