@@ -52,11 +52,9 @@ exports.login = async (req, res) => {
         group: user.group,
         role: user.role,
       },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
+      process.env.JWT_SECRET
     );
+
     res.json({
       token,
       id: user._id,

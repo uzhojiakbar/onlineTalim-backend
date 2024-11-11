@@ -38,18 +38,16 @@ const isTeacher = (req, res, next) => {
 };
 
 const isTeacherOrAdmin = (req, res, next) => {
-  const isTeacherOrAdmin = (req, res, next) => {
-    if (!req.user || !req.user.role) {
-      return res
-        .status(403)
-        .json({ message: "Role aniqlanmadi yoki mavjud emas" });
-    }
+  if (!req.user || !req.user.role) {
+    return res
+      .status(403)
+      .json({ message: "Role aniqlanmadi yoki mavjud emas" });
+  }
 
-    if (req.user.role === "admin" || req.user.role === "teacher") {
-      return next();
-    }
-    res.status(403).json({ message: "Access denied" });
-  };
+  if (req.user.role === "admin" || req.user.role === "teacher") {
+    return next();
+  }
+  res.status(403).json({ message: "Access denied" });
 
   next();
 };

@@ -31,13 +31,13 @@ const getLessonByName = async (req, res) => {
 
 // Yangi dars qo'shish
 const addLesson = async (req, res) => {
-  const { nomi, desc, views, topics } = req.body;
+  const { nomi, desc } = req.body;
 
   try {
-    // const newLesson = new Lesson({ nomi, desc, views, topics });
-    // await newLesson.save();
     const teacher = `${req.user.firstname} ${req.user.lastname} `;
     console.log(req.user);
+    const newLesson = new Lesson({ nomi, desc, teacher });
+    await newLesson.save();
 
     res.status(201).json(newLesson);
   } catch (error) {
