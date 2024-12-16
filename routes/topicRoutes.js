@@ -24,7 +24,12 @@ router.post(
 );
 
 // Mavzuni yangilash
-router.put("/:fannomi/:id", topicController.updateTopic);
+router.put(
+  "/:fannomi/:topicName",
+  verifyToken,
+  isTeacherOrAdmin,
+  topicController.updateTopic
+);
 
 // Mavzuni o'chirish
 router.delete(

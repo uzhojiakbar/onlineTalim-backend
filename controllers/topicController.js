@@ -75,7 +75,7 @@ const addTopic = async (req, res) => {
 // Mavzuni yangilash (nomi bo'yicha)
 const updateTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
-  const topicname = req.params.topicName;
+  const topicName = req.params.topicName;
   const updates = req.body;
 
   try {
