@@ -1,10 +1,21 @@
-// ? API: /api/users
+// ? API: /api/users/:username
 
 // ? QAYTADIGAN MALUMOT
+// {
+//     _id: '67607e8970a7ab9a5f1012b3',
+//     username: 'asd-admin',
+//     firstname: 'user test',
+//     lastname: 'Murodillayev',
+//     group: '36-att-23',
+//     role: 'teacher',
+//     __v: 0
+//   }
 
 // ? Template
 
-fetch("http://localhost:5000/api/users/", {
+const username = "asd-admin";
+
+fetch("http://localhost:5000/api/users/" + username, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",

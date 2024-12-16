@@ -9,4 +9,15 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers };
+const GetUser = async (req, res) => {
+  const username = req.params.username;
+
+  try {
+    const user = await User.find({ username }).select("-password"); // Parollarni ko'rsatmaslik
+    res.status(200).json(user[0]);
+  } catch (error) {
+    res.status(500).json({ message: "Server error. Could not get users." });
+  }
+};
+
+module.exports = { getAllUsers, GetUser };
