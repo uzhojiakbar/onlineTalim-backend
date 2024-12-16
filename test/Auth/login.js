@@ -16,8 +16,8 @@ fetch("http://localhost:5000/api/auth/login", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    username: "asd-teacher",
-    password: "asd-teacher",
+    username: "asd-admin",
+    password: "asd-admin",
   }),
 })
   .then((response) => response.json())

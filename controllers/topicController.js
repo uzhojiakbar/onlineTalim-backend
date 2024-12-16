@@ -5,6 +5,7 @@ const getTopics = async (req, res) => {
 
   try {
     const lesson = await Lesson.findOne({ nomi: fannomi });
+
     if (lesson) {
       const resData = lesson.topics.map((topic) => {
         return {
@@ -101,6 +102,9 @@ const updateTopic = async (req, res) => {
 const deleteTopic = async (req, res) => {
   const fannomi = req.params.fannomi;
   const topicName = req.params.topicName;
+
+  console.log("fannomi: ", fannomi);
+  console.log("topicName: ", topicName);
 
   try {
     const lesson = await Lesson.findOne({ nomi: fannomi });

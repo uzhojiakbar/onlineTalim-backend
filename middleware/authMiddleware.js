@@ -38,6 +38,8 @@ const isTeacher = (req, res, next) => {
 };
 
 const isTeacherOrAdmin = (req, res, next) => {
+  console.log(req.user);
+
   if (!req.user || !req.user.role) {
     return res
       .status(403)
@@ -45,6 +47,8 @@ const isTeacherOrAdmin = (req, res, next) => {
   }
 
   if (req.user.role === "admin" || req.user.role === "teacher") {
+    console.log(req.user);
+
     return next();
   }
   res.status(403).json({ message: "Access denied" });

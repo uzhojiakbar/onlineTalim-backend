@@ -9,8 +9,8 @@
 // }
 
 // ? Template
-const fannomi = "Kompyuter tizimlari va tarmoqlari";
-const mavzuNomi = "1-dars";
+const fannomi = "Komyuter tizmilari";
+const mavzuNomi = "Ip manzillar";
 
 fetch(`http://localhost:5000/api/topic/${fannomi}/${mavzuNomi}/`)
   .then((response) => {

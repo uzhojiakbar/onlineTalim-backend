@@ -16,12 +16,22 @@ router.get("/:fannomi", topicController.getTopics);
 
 router.get("/:fannomi/:topicname", topicController.getTopic);
 
-router.post("/:fannomi", isTeacherOrAdmin, topicController.addTopic);
+router.post(
+  "/:fannomi",
+  verifyToken,
+  isTeacherOrAdmin,
+  topicController.addTopic
+);
 
 // Mavzuni yangilash
 router.put("/:fannomi/:id", topicController.updateTopic);
 
 // Mavzuni o'chirish
-router.delete("/:fannomi/:id", topicController.deleteTopic);
+router.delete(
+  "/:fannomi/:topicName",
+  verifyToken,
+  isTeacherOrAdmin,
+  topicController.deleteTopic
+);
 
 module.exports = router;
