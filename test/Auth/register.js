@@ -11,12 +11,12 @@ const registerUser = async () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: "asd-admin",
-        password: "asd-admin",
+        username: "asd-admin1",
+        password: "asd-admin1",
         firstname: "user test",
         lastname: "Murodillayev",
         group: "36-att-23",
-        role: "teacher",
+        role: "admin",
       }),
     });
 
