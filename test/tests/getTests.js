@@ -1,19 +1,6 @@
-// ? API: /api/topic/{fannomi}
-
-// ? QAYTADIGAN MALUMOT
-// [
-//     {
-//       name: '1-dars: Algebra',
-//       _id: '672e02d5773e2cd98d6b4a8d'
-//     }
-//      ...
-// ]
-
-// ? Template
-
-const fannomi = "Matematika";
-
-fetch(`http://localhost:5000/api/topic/${fannomi}`)
+const fannomi = "birinchi fan";
+const darsnomi = "dars";
+fetch(`http://localhost:5000/api/test/${fannomi}/${darsnomi}`)
   .then((response) => {
     if (!response.ok) {
       return response.text().then((text) => {
