@@ -20,7 +20,22 @@ const getTests = async (req, res) => {
       return res.status(404).json({ message: "Testlar topilmadi" });
     }
 
-    res.json(topic.test);
+    const testsWithoutCorrect = topic.test.map((v) => {
+      return {
+        title: `${v.title}`,
+        id: `${v._id}`,
+        fan: `${fannomi}`,
+        dars: `${darsnomi}`,
+        variant: v.variant.map((v2) => ({
+          name: v2.name,
+          id: v2._id,
+        })),
+      };
+    });
+
+    console.log(testsWithoutCorrect);
+
+    res.json(testsWithoutCorrect);
   } catch (error) {
     console.error("getTests error:", error);
     res.status(500).json({ message: "Server xatoligi" });
