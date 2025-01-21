@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoutes");
 const topicRoutes = require("./routes/topicRoutes");
 
 const LessonsRoutes = require("./routes/lessonRoutes");
+const TestRoutes = require("./routes/testRoutes");
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/lessons", LessonsRoutes);
 app.use("/api/topic", topicRoutes);
+app.use("/api/test", TestRoutes);
 
 app.get("/", (req, res) => {
   res.send(`

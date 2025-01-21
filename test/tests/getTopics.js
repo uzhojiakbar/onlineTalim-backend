@@ -11,7 +11,7 @@
 
 // ? Template
 
-const fannomi = "birinchi fan";
+const fannomi = "Matematika";
 
 fetch(`http://localhost:5000/api/topic/${fannomi}`)
   .then((response) => {

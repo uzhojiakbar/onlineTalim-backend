@@ -1,19 +1,18 @@
-// ? API: /api/topic/{fannomi}
+// ? API: /api/topic/${fannomi}/${mavzuNomi}/
 
 // ? QAYTADIGAN MALUMOT
-// [
-//     {
-//       name: '1-dars: Algebra',
-//       _id: '672e02d5773e2cd98d6b4a8d'
-//     }
-//      ...
-// ]
+// {
+//   name: '',
+//   desc: '',
+//   embed: '',
+//   _id: ''
+// }
 
 // ? Template
+const fannomi = "Matematika";
+const mavzuNomi = "Diferensila tenglama";
 
-const fannomi = "birinchi fan";
-
-fetch(`http://localhost:5000/api/topic/${fannomi}`)
+fetch(`http://localhost:5000/api/topic/${fannomi}/${mavzuNomi}/`)
   .then((response) => {
     if (!response.ok) {
       return response.text().then((text) => {

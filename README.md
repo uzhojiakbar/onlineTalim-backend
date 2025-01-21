@@ -8,7 +8,7 @@
   <li> firstname - type string, required, </li>
   <li> lastname - type string, required, </li>
   <li> group - type string, required, </li>
-  <li> role - type string, required, def: user </li>
+  <li> role - type string, required, def: user (Teacher, Admin, User) </li>
 </ul>
 
 ### Login uchun -> /api/auth/login POST (Foydaluvchini barcha malumotlari va JWT tokenni qaytardi)
